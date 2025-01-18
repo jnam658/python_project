@@ -1,0 +1,60 @@
+.button_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 100%;
+}
+html, body{
+    background-color: white;
+    height: 100%;
+    margin: 0;
+}
+.center_horizontal{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+.center_vertical{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+}
+.center_vertical p{
+    margin: 0;
+}
+#title{
+    margin: 0;
+    margin-bottom: 0px;
+    width: 17%;
+    height: 5%;
+    font-size: 34px;
+    color: #888888;
+}
+#tag{
+    width: 6%;
+    color: #888888;
+    margin: 20px;
+}
+.menu_button{
+    margin: 10px;
+    width: 30px;
+    height: 30px;
+    top:20px;
+    left:20px;
+    background-image: url(img/menu_button1.png);
+    background-color: transparent;
+    background-size: 30px 30px;
+    cursor: pointer;
+    border:0px;
+    transition: filter 0.3s ease;
+    position: absolute;
+}
+.menu-button:active {
+    filter: grayscale(100%) brightness(0%) opacity(0.5); 
+}
