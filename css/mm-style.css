@@ -46,7 +46,7 @@ html, body {
     background-color: blue;
     transform-origin: top left;
     border-radius: 50%;
-    z-index: 2;
+    z-index: 3;
 }
 .subitem-container {
     position: relative; /* 기준점 역할 */

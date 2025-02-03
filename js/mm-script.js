@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const mindmap = document.querySelector('.mindmap');
     // 메인 토픽의 중앙 좌표 계산
     const mainTopic = document.querySelector('.main-topic');
     const mainButton = document.querySelector('.main-button');
-    const subTopicContainer = document.querySelector('.sub-topic-container');
 
-    const mainCenterX = mainTopic.offsetLeft + mainTopic.offsetWidth / 2;
-    const mainCenterY = mainTopic.offsetTop + mainTopic.offsetHeight / 2;
+    const mainCenterX = mainTopic.offsetLeft;
+    const mainCenterY = mainTopic.offsetTop;
 
     let subTopicCount = 0;
 
@@ -18,18 +18,25 @@ document.addEventListener('DOMContentLoaded', () => {
         // 서브토픽 div 요소 생성
         const newSubTopic = document.createElement('div');
         newSubTopic.classList.add('sub-topic');
-        
+        mindmap.appendChild(newSubTopic);
         //여기부터 arrangeSubTopic함수
-        newSubTopic.style.left = `${mainCenterX}px`;
-        newSubTopic.style.top = `${mainCenterY}px`;
         
+        const radiusX = 300; // 가로 반지름 (기본값)
+        const radiusY = 150; // 세로 반지름 (조금 줄여서 위아래 간격을 좁힘)
+        const angleStep = (2 * Math.PI) / 4; // 4개의 서브토픽을 균등한 간격으로 배치
+
+        const angle = subTopicCount * angleStep; // 각도 계산
+        const newX = mainCenterX + radiusX * Math.cos(angle) - newSubTopic.offsetWidth / 2;
+        const newY = mainCenterY + radiusY * Math.sin(angle) - newSubTopic.offsetHeight / 2;
+
+        newSubTopic.style.left = `${newX}px`;
+        newSubTopic.style.top = `${newY}px`;
 
         // 서브토픽 버튼 생성
         const subButton = document.createElement('button');
         subButton.classList.add('add-button');
         subButton.textContent = '+';
         newSubTopic.appendChild(subButton); // 버튼을 서브토픽에 추가
-        subTopicContainer.appendChild(newSubTopic); // 서브토픽을 sub-topic-container에 추가
 
         //서브아이템 컨테이너 생성
         const subItemContainer = document.createElement('div');
@@ -48,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         subTopicCount++;
-        drawLines(newSubTopic);
+        //drawLines(newSubTopic);
     });
     
     // 서브 아이템 추가 및 원형 배치
@@ -131,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const distanceY = subCenterY - mainCenterY;
         const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
 
-        console.log(subCenterX, subCenterY);
         
         // 선 요소 생성
         const line = document.createElement('div');
@@ -148,6 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         // 선을 서브토픽 컨테이너에 추가
-        subTopicContainer.appendChild(line);
+        subTopic.appendChild(line);
     }
 });
